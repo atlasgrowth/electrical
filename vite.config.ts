@@ -29,6 +29,7 @@ export default defineConfig({
     },
   },
   root: path.resolve(__dirname, "client"),
+  base: '/electrical/', // Replace with your repository name
   build: {
     outDir: path.resolve(__dirname, "dist/public"),
     emptyOutDir: true,
