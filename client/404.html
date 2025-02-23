@@ -5,9 +5,9 @@
     <meta charset="utf-8">
     <title>Redirecting...</title>
     <script>
-      sessionStorage.redirect = location.href;
+      sessionStorage.redirect = location.pathname + location.search;
     </script>
-    <meta http-equiv="refresh" content="0;URL='/electrical/'">
+    <meta http-equiv="refresh" content="0;URL='/electrical'">
   </head>
   <body>
   </body>
