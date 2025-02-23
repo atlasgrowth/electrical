@@ -5,10 +5,13 @@
     <meta charset="utf-8">
     <title>Redirecting...</title>
     <script>
-      sessionStorage.redirect = location.pathname + location.search;
+      const segment = 'electrical';
+      const path = window.location.pathname;
+      sessionStorage.redirect = path.startsWith('/' + segment) ? path : '/' + segment + path;
+      window.location.href = '/' + segment;
     </script>
-    <meta http-equiv="refresh" content="0;URL='/electrical'">
   </head>
   <body>
+    <p>Redirecting...</p>
   </body>
 </html>
