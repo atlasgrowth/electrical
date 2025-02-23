@@ -40,6 +40,11 @@ export function ServicesOverview() {
   const urlParams = new URLSearchParams(window.location.search);
   const businessId = urlParams.get('s');
 
+  // Helper function to preserve URL parameters
+  const getServiceUrl = (baseUrl: string) => {
+    return businessId ? `${baseUrl}?s=${businessId}` : baseUrl;
+  };
+
   return (
     <section 
       className="py-16 relative min-h-screen bg-fixed bg-center bg-cover"
@@ -51,7 +56,9 @@ export function ServicesOverview() {
       <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/60 to-black/70" />
       <div className="container relative z-10">
         <div className="text-center max-w-2xl mx-auto mb-12">
-          <h2 className="text-3xl font-bold mb-4 text-white">{business?.basic_info.name} Services</h2>
+          <h2 className="text-3xl font-bold mb-4 text-white">
+            {business?.basic_info.name} Services
+          </h2>
           <p className="text-gray-300">
             Comprehensive electrical services for all your residential, commercial, and industrial needs
           </p>
@@ -74,7 +81,7 @@ export function ServicesOverview() {
               </CardHeader>
               <CardContent className="relative z-10">
                 <p className="text-gray-200 mb-4">{service.description}</p>
-                <Link href={`${service.link}${businessId ? `?s=${businessId}` : ''}`}>
+                <Link href={getServiceUrl(service.link)}>
                   <Button 
                     variant="outline" 
                     className="w-full bg-white/10 text-white border-2 border-white hover:bg-white hover:text-black transition-all duration-300 font-semibold backdrop-blur-sm"

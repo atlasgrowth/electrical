@@ -13,24 +13,27 @@ export function Hero() {
     retry: false
   });
 
+  // Added businessId -  Assuming businessId is available globally or passed as a prop.  Needs further context to define properly.
+  const businessId = "some_id" // Placeholder - needs correct implementation
+
   const slides = [
     {
       image: "https://images.unsplash.com/photo-1621905252507-b35492cc74b4?auto=format&fit=crop&q=80&w=2000",
       title: "Residential Electrical Services",
       subtitle: `${business?.basic_info.name || 'Professional'} residential electrical solutions for your home`,
-      link: "/residential"
+      link: businessId ? `/residential?s=${businessId}` : "/residential"
     },
     {
       image: "https://images.unsplash.com/photo-1590959651373-a3db0f38c961?auto=format&fit=crop&q=80&w=2000",
       title: "Commercial Electrical Services",
       subtitle: `Powering businesses with ${business?.basic_info.name || 'expert'} commercial solutions`,
-      link: "/commercial"
+      link: businessId ? `/commercial?s=${businessId}` : "/commercial"
     },
     {
       image: "https://images.unsplash.com/photo-1581094288338-2314dddb7ece?auto=format&fit=crop&q=80&w=2000",
       title: "Industrial Electrical Services",
       subtitle: `Industrial-grade electrical solutions by ${business?.basic_info.name || 'professionals'}`,
-      link: "/industrial"
+      link: businessId ? `/industrial?s=${businessId}` : "/industrial"
     }
   ];
 
@@ -79,9 +82,9 @@ export function Hero() {
                 </Link>
               </Button>
 
-              <Button 
-                size="lg" 
-                variant="outline" 
+              <Button
+                size="lg"
+                variant="outline"
                 className="bg-black/30 backdrop-blur-sm text-white border-white hover:bg-white hover:text-black transition-colors"
                 onClick={() => window.location.href = `tel:${business?.basic_info.phone}`}
               >
