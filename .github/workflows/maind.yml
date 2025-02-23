@@ -1,0 +1,36 @@
+name: Revert to Specific Commit
+
+on:
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: 'Branch to revert on'
+        required: true
+        default: 'main'
+
+jobs:
+  revert:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Configure Git
+        run: |
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@github.com"
+
+      - name: Create revert branch
+        run: |
+          git checkout ${{ github.event.inputs.branch }}
+          git checkout -b revert-branch
+
+      - name: Reset to specific commit
+        run: |
+          git reset --hard 3b85ea8773686d9610339af92bcd37483a517e4a
+
+      - name: Force push changes
+        run: |
+          git push --force origin revert-branch
